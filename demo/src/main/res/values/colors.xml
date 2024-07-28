@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="blue">#167ff4</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#8803DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="green">#0fbb67</color>
+    <color name="num">#5353fc</color>
+
+
+    <color name="red">#db5a6b</color>
+
+    <color name="blue2">#1dbcb7</color>
+    <color name="orange">#ff6553</color>
+    <color name="orange2">#ff9e4b</color>
+
+    <!-- 状态栏颜色分配-->
+    <color name="status_bar_color">#FFBDD0</color>
+    <!-- TableActivity颜色分配-->
+    <color name="pink">#8a75f6</color><!-- 扇形图颜色分配-->
+    <color name="pink2">#ba71ff</color>
+    <color name="pie_color3">#FFCCCC</color>
+    <color name="line_color">#FF8888</color><!-- 折线图颜色分配-->
+    <!-- fragment背景色分配-->
+    <color name="fragment_color1">#EFEFEF</color>
+    <color name="fragment_color2">#FF88C2</color>
+    <color name="fragment__color3">#FFFF</color>
+    <color name="fragment__color4">#FF88C2</color>
+    <color name="fragment__color5">#FFFF</color>
+    <!--bottom radio button背景颜色分配-->
+    <color name="bottom_radio_color1">#FF88C2</color>
+
+    <!--    复习底部操作按钮背景颜色和字体颜色-->
+    <color name="review_button_background">#FFBDD0</color>
+    <color name="review_button_text">#FFFF</color>
+    <color name="activity_background">#F0F0F0</color>
+    <color name="transparent">#00000000</color>
+    <color name="c_3d68e8">#3d68e8</color>
+    <color name="c_333333">#333333</color>
+    <color name="gray">#979797</color>
+    <color name="lgray">#eeeeee</color>
+    <color name="bText">#000000</color>f6f6f6
+    <color name="bbText">#333</color>
+    <color name="mbg">#f6f6f6</color>
+
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="mainbg">#eee</color>
+    <color name="goodDetailbg">#aaa</color>
+</resources>

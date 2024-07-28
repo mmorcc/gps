@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/header_in"
+        layout="@layout/header"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="20dp">
+
+        <TextView
+            android:id="@+id/item1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="标定"
+            android:paddingHorizontal="15dp"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/round_wihte_bg_small"
+            android:textStyle="bold"
+            android:textSize="40sp" />
+        <TextView
+            android:id="@+id/item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="复位"
+            android:paddingHorizontal="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingVertical="5dp"
+
+            android:layout_margin="30dp"
+            android:textColor="@color/white"
+            android:background="@drawable/round_wihte_bg_small"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
