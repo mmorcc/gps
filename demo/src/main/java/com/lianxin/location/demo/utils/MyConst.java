@@ -27,4 +27,5 @@ public class MyConst {
 
     public static final String MY_JING_DU="MY_JING_DU";
     public static final String MY_WEI_DU="MY_WEI_DU";
+    public static final String IS_START= "isStart";
 }

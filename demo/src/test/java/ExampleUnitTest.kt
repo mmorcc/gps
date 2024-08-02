@@ -22,6 +22,7 @@ class ExampleUnitTest {
 //        received msg=$CMD=IMEI=868188079208405  reply=$cmd=IMEI
 
 //        var server =SimpleServer()
+        println("123")
 
     }
 }

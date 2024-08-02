@@ -21,19 +21,25 @@ public class GpsHelper {
     //打通串口
     public synchronized static boolean connect() {
         if (!isConnected) {
-            //打通串口
-            mSPort = new SPort(new File("/dev/ttyWCH0"), 115200, null);
+            try{
+
+                //打通串口
+                mSPort = new SPort(new File("/dev/ttyWCH0"), 115200, null);
 //            mSPort = new SPort(new File("/dev/ttyS1"), 115200, null);
-            Util.l(" mSPort="+mSPort);
-            mSPort.open();
-            int portState = mSPort.getState();
-            Util.writeFileToLocalStorage(" open port state="+portState);
-            if ( portState == 101) {
-                isConnected = true;
+                Util.l(" mSPort="+mSPort);
+                mSPort.open();
+                int portState = mSPort.getState();
+                Util.writeFileToLocalStorage(" open port state="+portState);
+                if ( portState == 101) {
+                    isConnected = true;
 //                init();
-                return true;
-            } else {
-                mSPort = null;
+                    return true;
+                } else {
+                    mSPort = null;
+                    return false;
+                }
+            }catch (Exception e){
+                Util.l(" open err="+e.getMessage());
                 return false;
             }
         }

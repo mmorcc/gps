@@ -248,18 +248,9 @@ public class Util {
                 writer2.flush();
                 writer2.close();
             }catch (Exception e2) {
-
+                Util.l(" writelog err="+e2.getMessage());
             }
             // 文件写入发生错误
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.flush();
-                    writer.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 

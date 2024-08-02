@@ -35,7 +35,6 @@ public class MenuActivity extends BaseActivity {
             Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
     };
     private List<String> permissionList = new ArrayList<>();
     private long firstTime=new Date().getTime();
@@ -56,7 +55,7 @@ public class MenuActivity extends BaseActivity {
 
         });
         findViewById(R.id.item4).setOnClickListener(o->{
-            Util.toAc(this, SocketActivity.class);
+//            Util.toAc(this, SocketActivity.class);
 
         });
         getPermission();

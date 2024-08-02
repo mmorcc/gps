@@ -28,6 +28,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.lianxin.location.demo.activity.BaseActivity;
+import com.lianxin.location.demo.activity.MyApplication;
 import com.lianxin.location.demo.utils.MyConst;
 import com.lianxin.location.demo.utils.SocketUtil;
 import com.lianxin.location.demo.utils.Util;
@@ -36,65 +37,22 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
+//import butterknife.BindView;
+//import butterknife.ButterKnife;
+//import butterknife.OnClick;
+//import butterknife.Unbinder;
 //import pub.devrel.easypermissions.EasyPermissions;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity  implements View.OnClickListener {
 
-    @BindView(R.id.btn_start)
-    Button btn_start;
-    @BindView(R.id.btn_stop)
-    Button btn_stop;
-    @BindView(R.id.tv_longitude)
-    TextView tv_longitude;
-    @BindView(R.id.tv_latitude)
-    TextView tv_latitude;
-    @BindView(R.id.tv_height)
-    TextView tv_height;
-    @BindView(R.id.tv_location_mistake)
-    TextView tv_location_mistake;
-    @BindView(R.id.tv_location_quality)
-    TextView tv_location_quality;
-    @BindView(R.id.tv_location_status)
-    TextView tv_location_status;
-    @BindView(R.id.tv_shuiping_yinzi)
-    TextView tv_shuiping_yinzi;
-    @BindView(R.id.tv_chafen_lingqi)
-    TextView tv_chafen_lingqi;
-    @BindView(R.id.tv_satellite_numbers)
-    TextView tv_satellite_numbers;
-    @BindView(R.id.btn_cope)
-    Button btn_cope;
-    BarChart mBarChart;
-    @BindView(R.id.result0)
-    TextView result0;
-    @BindView(R.id.result1)
-    TextView result1;
-    @BindView(R.id.btn_start0)
-    Button btn_start0;
-    @BindView(R.id.btn_stop0)
-    Button btn_stop0;
-    @BindView(R.id.btn_start1)
-    Button btn_start1;
-    @BindView(R.id.btn_stop1)
-    Button btn_stop1;
-    @BindView(R.id.send)
-    Button send;
-    @BindView(R.id.ppp)
-    Button ppp;
-    @BindView(R.id.ppp_stop)
-    Button ppp_stop;
-    @BindView(R.id.ppp_result)
-    TextView ppp_result;
+
 
     private final static String DEMO_GGA_STR = "$GPGGA,000001,3959.776019,N,11602.363141,E,1,8,1,100.000,M,0,M,3,0*46\r\n";
 
-    Unbinder mUnbinder;
+//    Unbinder mUnbinder;
     private List<SatelliteInfoBean> list = new ArrayList<>();
 
     private String mCopeString;
@@ -162,15 +120,17 @@ public class MainActivity extends BaseActivity {
             }
             if (msg.what == 2) {
                 String content = (String) msg.obj;
+                Util.l("收到串口消息==content=" + content);
+                if(tv_location_status==null){
+                    tv_location_status=findViewById(R.id.tv_location_status22);
+                }
                 if (Util.isNotEmpty(content) && tv_location_status != null) {
-                    Util.l("msg.what==2" + content);
-                    if(tv_location_status!=null){
-                        tv_location_status.setText("消息:" + content);
-                        if (content.contains("GGA")) {
-                            setGGADataUI(content);
-                            if (GGAData == null && content.contains("M")) {
-                                GGAData = content;
-                            }
+                    tv_location_status=findViewById(R.id.tv_location_status22);
+                    tv_location_status.setText("消息:" + content);
+                    if (content.contains("GGA")) {
+                        setGGADataUI(content);
+                        if (GGAData == null && content.contains("M")) {
+                            GGAData = content;
                         }
                     }
                 }
@@ -179,14 +139,62 @@ public class MainActivity extends BaseActivity {
         }
     };
 
+    private TextView tv_location_status;
+
+    Button btn_start;
+    Button btn_stop;
+    TextView tv_longitude;
+    TextView tv_latitude;
+    TextView tv_height;
+    TextView tv_location_mistake;
+    TextView tv_location_quality;
+    TextView tv_shuiping_yinzi;
+    TextView tv_chafen_lingqi;
+    TextView tv_satellite_numbers;
+    Button btn_cope;
+    BarChart mBarChart;
+    TextView result0;
+    TextView result1;
+    Button btn_start0;
+    Button btn_stop0;
+    Button btn_start1;
+    Button btn_stop1;
+    Button send;
+    Button ppp;
+    Button ppp_stop;
+    TextView ppp_result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.setLayoutId(R.layout.activity_main);
         super.onCreate(savedInstanceState);
 //        mBarChart = findViewById(R.id.barchart);
-        mUnbinder = ButterKnife.bind(this);
+//        mUnbinder = ButterKnife.bind(this);
         GGAData = null;
-
+        tv_location_status=findViewById(R.id.tv_location_status22);
+        btn_start=findViewById(R.id.btn_start);
+        btn_stop=findViewById(R.id.btn_stop);
+        tv_longitude=findViewById(R.id.tv_longitude);
+        tv_latitude=findViewById(R.id.tv_latitude);
+        tv_height=findViewById(R.id.tv_height);
+        tv_location_mistake=findViewById(R.id.tv_location_mistake);
+        tv_location_quality=findViewById(R.id.tv_location_quality);
+        tv_shuiping_yinzi=findViewById(R.id.tv_shuiping_yinzi);
+        tv_chafen_lingqi=findViewById(R.id.tv_chafen_lingqi);
+        tv_satellite_numbers=findViewById(R.id.tv_satellite_numbers);
+        btn_cope=findViewById(R.id.btn_cope);
+        result0=findViewById(R.id.result0);
+        result1=findViewById(R.id.result1);
+        btn_start0=findViewById(R.id.btn_start0);
+        btn_stop0=findViewById(R.id.btn_stop0);
+        btn_start1=findViewById(R.id.btn_start1);
+        btn_stop1=findViewById(R.id.btn_stop1);
+        send=findViewById(R.id.send);
+        ppp=findViewById(R.id.ppp);
+        ppp_stop=findViewById(R.id.ppp_stop);
+        ppp_result=findViewById(R.id.ppp_result);
+        btn_start.setOnClickListener(this);
+        btn_stop.setOnClickListener(this);
+        btn_cope.setOnClickListener(this);
 //        requestPermission();
 
 //        initBarChart();
@@ -205,11 +213,17 @@ public class MainActivity extends BaseActivity {
         myThread.start();
     }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
+
     class MyThread extends Thread {
+
         public void run() {
             while (true) {
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(300);
 //                    Util.l("try receive data fromm chuan kou ");
                     //从串口取数据，发送到界面
                     byte[] dataBytes = GpsHelper.getDataBytes();
@@ -217,15 +231,18 @@ public class MainActivity extends BaseActivity {
                         String str = new String(dataBytes, "UTF-8");
                         Message msg = handler2.obtainMessage();
                         msg.what = 2;
-                        msg.obj = str;
-                        if (isChoukouStart) {
+                        msg.obj = str+"";
+                        String isStart = sp.get(MyConst.IS_START);
+                        Util.l("串口：tStart="  + " isChoukouStart=" + isStart + str);
+                        if (isStart.indexOf("1") >= 0) {
+                            Util.l("串口：发送消息");
                             handler2.sendMessage(msg);
+
                         }
-                    } else {
-//                        Util.l("try receive data fromm chuan kou err ");
                     }
                 } catch (Exception e) {
                     Util.l(" receive chuan kou err" + e.getMessage());
+                    break;
                 }
             }
         }
@@ -395,7 +412,6 @@ public class MainActivity extends BaseActivity {
 
     private boolean isChoukouStart = false;
 
-    @OnClick({R.id.btn_stop, R.id.btn_start, R.id.btn_cope})
     public void onClick(View view) {
         if (!AppUtils.isFastClick()) {
             return;
@@ -435,64 +451,48 @@ public class MainActivity extends BaseActivity {
     }
 
     private void startChuankou() {
-
+        Util.l("mmk startChuankou 0");
 //        String str="$GNGGA,093025.00,3128.43587150,N,12015.87953577,E,4,21,1.2,21.0398,M,7.3183,M,,*73";
 //        setGGADataUI(str);
-        if(isChoukouStart){
-            Util.showErr(context,"正在定位，请稍后");
+        if (isChoukouStart) {
+            Util.l("mmk startChuankou 1");
+            Util.showErr(context, "正在定位，请稍后");
             return;
         }
 
-        tv_location_status.setText("定位状态：定位中，请稍后...");
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-
-                    GpsHelper.powerOn(true);
-                    Thread.sleep(100);
-                    GpsHelper.connect();
-                    isChoukouStart = true;
-//                    GpsHelper.sendDataBytes(Util.stringToBytes("GPGGA 1" + END));
-//                    Util.writeFileToLocalStorage(
-//                            "GPGGA 1" + END
-//                    );
-                } catch (Exception e) {
-                    Util.writeFileToLocalStorage("启动定位异常：" + e.getMessage());
-                }
-
-            }
-        }).start();
+        if (tv_location_status != null) {
+            Util.l("mmk startChuankou 2");
+            tv_location_status.setText("定位状态：定位中，请稍后...");
+        }
+        Util.l("startChuankou==" + Thread.currentThread().getName()+ Thread.currentThread().getId());
+        isChoukouStart = true;
+        sp.put(MyConst.IS_START, "1");
+//        if(myThread!=null){
+//            sp.put(MyConst.IS_START,"1");
+//            Util.l("mmk startChuankou 3 isChoukouStart="+isChoukouStart);
+//            while (!myThread.isStart()){
+//                myThread.setStart(true);
+//            }
+//        }
+//        Util.l("mmk startChuankou 3 isChoukouStart="+isChoukouStart);
     }
 
     private void stopChuankou() {
-        if(!isChoukouStart){
-            Util.showErr(context,"已停止定位");
+        if (!isChoukouStart) {
+            Util.showErr(context, "已停止定位");
             return;
         }
         if (tv_location_status != null) {
             tv_location_status.setText("定位状态：已停止");
         }
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-//        GpsHelper.sendDataBytes(Util.stringToBytes("CONFIG RTK TIMEOUT 0"+END));
-//        GpsHelper.sendDataBytes(Util.stringToBytes("CONFIG RTK TIMEOUT 60"+END));
-//        GpsHelper.sendDataBytes(Util.stringToBytes("CONFIG DGPS TIMEOUT 60"+END));
-//                GpsHelper.sendDataBytes(Util.stringToBytes("unlog" + END));
-                GpsHelper.close();
-                isChoukouStart = false;
-//                Util.writeFileToLocalStorage(
-////                "CONFIG RTK TIMEOUT 0"+END
-////                +"CONFIG RTK TIMEOUT 60"+END
-////                +"CONFIG DGPS TIMEOUT 60"+END
-//                        "unlog" + END
-//                );
-
-            }
-        }).start();
+        isChoukouStart = false;
+        sp.put(MyConst.IS_START, "0");
+//        if(myThread!=null){
+//            sp.put(MyConst.IS_START,"0");
+////            while (myThread.isStart()){
+////                myThread.setStart(false);
+////            }
+//        }
     }
 
     private void setChuanKou() {
@@ -623,8 +623,8 @@ public class MainActivity extends BaseActivity {
         }
         if (locationQualityTagStr.equals("4")) {
             currentPosition = jingdu + "," + weidu + "," + gaodu + "," + locationQualityTagStr;
-            Util.writeFileToLocalStorage("GGAString=" + GGAString+"\n"
-                    +"loc success:" + currentPosition);
+            Util.writeFileToLocalStorage("GGAString=" + GGAString + "\n"
+                    + "loc success:" + currentPosition);
         }
         final String finalWeidu = weidu;
         final String finalJingdu = jingdu;
@@ -773,11 +773,11 @@ public class MainActivity extends BaseActivity {
             myThread.interrupt();
             myThread = null;
         }
-
-        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) {
-            mUnbinder.unbind();
-        }
-        mUnbinder = null;
+        tv_location_status=null;
+//        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) {
+//            mUnbinder.unbind();
+//        }
+//        mUnbinder = null;
         super.onDestroy();
 
     }
